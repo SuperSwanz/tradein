@@ -1,5 +1,5 @@
-# vertx-social
-Sample vertx web application to showcase the usage of [vertx-boot](https://github.com/greyseal/vertx-boot) library. 
+# tradein
+Sample vertx web application to showcase the usage of [vertx-boot](https://github.com/greyseal/vertx-boot) library. This application shows the trading data from [BSE](https://www.bseindia.com/). This is just for demo purpose.
 
 ## Getting Started
 
@@ -8,15 +8,15 @@ Git clone the project on your local machine and import it to your favorite ide.
 ### Prerequisites
 
 For runnning this, you will need
+- [Vertx-Boot](https://github.com/greyseal/vertx-boot) library.
 - Java 1.8
 - Gradle support - In Eclipse editor, goto help -> eclipse marketplace -> search for buildship (buildship gradle integration) and install it.
-- [Vertx-Boot](https://github.com/greyseal/vertx-boot) library. 
 
 ## Brief
-This sample application make use of [Vertx-Boot](https://github.com/greyseal/vertx-boot) library to expose a rest API **/runner/api/ping**
+This sample application make use of [Vertx-Boot](https://github.com/greyseal/vertx-boot) library to expose a trading rest API 
 - **HttpServerVerticle**       -> Default verticle from the vertx-boot library. Can be extened for the functionality.
-- **MessagingVerticle**        -> Sample Messaging verticle to send messages (no functionality for now).
 - **ServerStatusHandler**      -> Sample handler to send a "OK" Json response.
+- **MarketLiveHandler**        -> Handler to handle Trading Requests
 - **PingHandler**              -> Default handler from the vertx-boot library to send a "OK" Json response.
 
 ## Running the app
@@ -25,8 +25,8 @@ For running the app, (IDE used here is IntelliJ)
 - Open **appConfig.json** file and set the "http_server_port" as per your choice.
 - Once, changes are done in **appConfig.json**, add/edit Run/Debug Configurations for the project("vertx-social") and set:
   * **Main class**: com.greyseal.vertx.boot.AppLauncher
-  * **VM options**: -Dlogback.configurationFile=file:../vertx-social/src/main/resources/logback.xml
-  * **Program arguments**: -run com.greyseal.vertx.boot.verticle.MainVerticle -conf ../vertx-social/src/main/resources/appConfig.json 
+  * **VM options**: -Dlogback.configurationFile=file:../tradein/src/main/resources/logback.xml
+  * **Program arguments**: -run com.greyseal.vertx.boot.verticle.MainVerticle -conf ../tradein/src/main/resources/appConfig.json 
   * **Environment variables**: ENV=dev 
  <br /><br /> 
 
