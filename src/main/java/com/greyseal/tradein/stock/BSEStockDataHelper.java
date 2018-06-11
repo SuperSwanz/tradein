@@ -252,18 +252,19 @@ public class BSEStockDataHelper extends AbstractStockDataHelper {
             final String summary = StringUtils.substringAfter(data, "##@#");
             final Document doc = Jsoup.parse(summary);
             final Elements li = doc.getElementsByClass("prevclosevalue");
-            float previousValue = CommonUtil.toFloat(li.get(0).text());
-            float currentValue = CommonUtil.toFloat(axisData[5]);
-            float pointsDifference = CommonUtil.formatFloat(currentValue - previousValue);
-
-            root.put("open", CommonUtil.toFloat(li.get(1).text()));
-            root.put("high", CommonUtil.toFloat(li.get(2).text()));
-            root.put("low", CommonUtil.toFloat(li.get(3).text()));
-            root.put("previous_close", previousValue);
-            root.put("current", currentValue);
-            root.put("points_difference", pointsDifference);
-            root.put("percentage_difference", CommonUtil.formatFloat((pointsDifference * 100) / currentValue));
-            root.put("is_high", pointsDifference > 0);
+            if(li.size() > 0){
+                float previousValue = CommonUtil.toFloat(li.get(0).text());
+                float currentValue = CommonUtil.toFloat(axisData[5]);
+                float pointsDifference = CommonUtil.formatFloat(currentValue - previousValue);
+                root.put("open", CommonUtil.toFloat(li.get(1).text()));
+                root.put("high", CommonUtil.toFloat(li.get(2).text()));
+                root.put("low", CommonUtil.toFloat(li.get(3).text()));
+                root.put("previous_close", previousValue);
+                root.put("current", currentValue);
+                root.put("points_difference", pointsDifference);
+                root.put("percentage_difference", CommonUtil.formatFloat((pointsDifference * 100) / currentValue));
+                root.put("is_high", pointsDifference > 0);
+            }
 
             final String toParse = StringUtils.substringBetween(data, "#@#", "##@#");
             final String[] timeSeries = toParse.split("#");
